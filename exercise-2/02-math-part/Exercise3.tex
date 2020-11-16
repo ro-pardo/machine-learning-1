@@ -1,0 +1,124 @@
+\section{Exercise 3}
+Given formulas are:\\
+\begin{center}
+    \begin{equation}
+        \frac{1}{\sigma^{2}_{n}}=\frac{n}{\sigma^{2}}+\frac{1}{\sigma^{2}_{0}}
+        \label{eq:sigma}
+    \end{equation}
+\end{center}
+\begin{center}
+    \begin{equation}
+        \frac{\mu_{n}}{\sigma^{2}_{n}}=\frac{n}{\sigma^{2}_{n}}\hat{\mu}_{n}+\frac{\mu_{0}}{\sigma^{2}_{0}}
+    \end{equation}
+\end{center}
+\begin{center}
+    \begin{equation}
+        \hat{\mu}_{n}=\frac{1}{n}\sum_{k=1}^{n}x_{k}
+    \end{equation}
+\end{center}
+
+
+\subsection{a}
+We want to show that following relation holds:
+
+\begin{center}
+    \begin{equation}
+        \sigma^{2}_{n}\le min\left(\frac{\sigma^{2}}{n},\sigma^{2}_{0}\right)
+    \label{eq:3a}
+    \end{equation}
+\end{center}
+
+At first we need a expression for $\sigma^{2}_{n}$. This will give us formula (\ref{eq:sigma}):
+
+\begin{align*}
+    &\Rightarrow&\frac{1}{\sigma^{2}_{n}} &=\frac{n}{\sigma^{2}}+\frac{1}{\sigma^{2}_{0}}\\
+    &\Leftrightarrow& 1 &=\left(\frac{n}{\sigma^{2}}+\frac{1}{\sigma^{2}_{0}}\right)\cdot\sigma^{2}_{n}\\
+    &\Leftrightarrow& \sigma^{2}_{n} &=\frac{1}{\frac{n}{\sigma^{2}}+\frac{1}{\sigma^{2}_{0}}}\\
+    &\Leftrightarrow& \sigma^{2}_{n} &=\frac{1}{\frac{n\sigma^{^2}_{0}}{\sigma^{2}\sigma^{^2}_{0}}+\frac{\sigma^{2}}{\sigma^{2}_{0}\sigma^{2}}}\\
+    &\Leftrightarrow& \sigma^{2}_{n} &=\frac{1}{\frac{n\sigma^{^2}_{0}+\sigma^{2}}{\sigma^2\sigma^{2}_{0}}}\\
+    &\Leftrightarrow& \sigma^{2}_{n} &=\frac{\sigma^2\sigma^{2}_{0}}{n\sigma^{^2}_{0}+\sigma^{2}}
+\end{align*}
+
+Now we have two cases to consider to show that $\sigma^{2}_{n}\le min\left(\frac{\sigma^{2}}{n},\sigma^{2}_{0}\right)$ holds:
+\begin{align}
+    \text{case 1: } \sigma^{2}_{0}&\le\frac{\sigma^{2}}{n}\\
+    \text{case 2: } \sigma^{2}_{0}&\ge\frac{\sigma^{2}}{n}
+\end{align}
+
+At first we take a look at case one:\\
+
+\begin{align*}
+    &\Rightarrow&\sigma^{2}_{n}&\le min\left(\frac{\sigma^{2}}{n},\sigma^{2}_{0}\right)\\
+    &\Leftrightarrow&\sigma^{2}_{n}&\le\frac{\sigma^{2}}{n}\\
+    &\Leftrightarrow& \frac{\sigma^2\sigma^{2}_{0}}{n\sigma^{^2}_{0}+\sigma^{2}} &\le\frac{\sigma^{2}}{n}\\
+    &\Leftrightarrow& \frac{\sigma^{2}_{0}}{n\sigma^{^2}_{0}+\sigma^{2}} &\le\frac{1}{n}\\
+    &\Leftrightarrow& \frac{1}{n\sigma^{^2}_{0}+\sigma^{2}} &\le\frac{1}{n\sigma^{2}_{0}}\\
+    &\Leftrightarrow& 1 &\le\frac{n\sigma^{^2}_{0}+\sigma^{2}}{n\sigma^{2}_{0}}\\
+    &\Leftrightarrow& 1 &\le 1+\frac{\sigma}{n\sigma^{2}_{0}}\\
+    &\Leftrightarrow& 0 &\le \frac{\sigma}{n\sigma^{2}_{0}}
+\end{align*}
+
+This expression is true because $\sigma$, n and $\sigma_{0}$ are always greater than zero (or maybe sometimes equal to zero) and so we have shown thas the first case is true.\\
+Now we take a look at case two:
+
+\begin{align*}
+    &\Rightarrow&\sigma^{2}_{n}&\le min\left(\frac{\sigma^{2}}{n},\sigma^{2}_{0}\right)\\
+    &\Leftrightarrow&\sigma^{2}_{n}&\le\sigma^{2}_{0}\\
+    &\Leftrightarrow& \frac{\sigma^2\sigma^{2}_{0}}{n\sigma^{^2}_{0}+\sigma^{2}} &\le\sigma^{2}_{0}\\
+    &\Leftrightarrow& \frac{\sigma^2}{n\sigma^{^2}_{0}+\sigma^{2}} &\le 1\\
+    &\Leftrightarrow&\sigma^2&\le n\sigma^{^2}_{0}+\sigma^{2}\\
+    &\Leftrightarrow& 1\le\frac{n\sigma^{2}_{0}}{\sigma^{2}}-1\\
+    &\Leftrightarrow& 0\le\frac{n\sigma^{2}_{0}}{\sigma^{2}}
+\end{align*}
+
+Like in case one is this expression true because $\sigma$, n and $\sigma_{0}$ are always greater than zero (or maybe sometimes equal to zero) and so we have shown thas the second case is true.\\
+So we have shown that relation (\ref{eq:3a}) holds.
+
+\subsection*{3b}
+Prove that $min(\hat{\mu}_n, \mu_0)\leq \mu_n \leq max(\hat{\mu}_n, \mu_0)$
+\begin{align*}
+   \frac{\mu_n}{\sigma^{2}_{n}} &= \frac{n}{\sigma^{2}}\hat{\mu}_n+\frac{\mu_0}{\sigma^{2}_0}\\
+   \Leftrightarrow\frac{\mu_n}{\frac{\sigma^2\sigma^{2}_{0}}{n\sigma^{^2}_{0}+\sigma^{2}}} &= \frac{n}{\sigma^{2}}\hat{\mu}_n+\frac{\mu_0}{\sigma^{2}_0}\\
+   \Leftrightarrow \mu_n&=\frac{n\sigma^{2}_0\hat{\mu}_n + \mu_0\sigma^{^2}}{n\sigma^{^2}_{0}+\sigma^{2}}
+\end{align*}
+\hspace*{2mm}If $\hat{\mu}_n \leq \mu_n$:
+\begin{align*}
+\hat{\mu}_n &\leq\frac{n\sigma^{2}_0\hat{\mu}_n + \mu_0\sigma^{^2}}{n\sigma^{^2}_{0}+\sigma^{2}}\\
+\Leftrightarrow0&\leq\frac{n\sigma^{2}_0\hat{\mu}_n + \mu_0\sigma^{^2}-\hat{\mu}_n(n\sigma^{^2}_{0}+\sigma^{2})}{n\sigma^{^2}_{0}+\sigma^{2}}\\
+\Leftrightarrow0&\leq\frac{\mu_0\sigma^{2}-\hat{\mu}_n\sigma^{2}}{n\sigma^{^2}_{0}+\sigma^{2}}\\
+\Leftrightarrow 0&\leq \sigma^{2}(\mu_0-\hat{\mu}_n),\ because\ neither\ n,\ \sigma^{^2}_{0}\ or\ \sigma^{2}\ can\ be\ negative\\
+\Leftrightarrow 0&\leq \mu_0-\hat{\mu}_n,\ because\ \sigma^{2}>0\\
+\Leftrightarrow \hat{\mu}_n&\leq \mu_0
+\end{align*}
+\hspace{10mm}If $\hat{\mu}_n \leq \mu_n ,\ \mu_0$ has to be greater or equals to $\mu_n$ to fulfill \\\hspace*{10mm}$min(\hat{\mu}_n, \mu_0)\leq \mu_n \leq max(\hat{\mu}_n, \mu_0)$ because of transitivity\\ 
+\hspace*{10mm}that would mean $\hat{\mu}_n\leq \mu_0$ is true.\\ \\
+\hspace*{5mm}Test whether $\mu_0\geq \mu_n$ if $\hat{\mu}_n \leq \mu_n$:
+\begin{align*}
+    \mu_0&\geq \mu_n \\
+    \Leftrightarrow \mu_0&\geq\frac{n\sigma^{2}_0\hat{\mu}_n + \mu_0\sigma^{^2}}{n\sigma^{^2}_{0}+\sigma^{2}}\\
+    \Leftrightarrow 0&\geq\frac{n\sigma^{2}_0\hat{\mu}_n + \mu_0\sigma^{^2}-\mu_0(n\sigma^{^2}_{0}+\sigma^{2})}{n\sigma^{^2}_{0}+\sigma^{2}}\\
+    \Leftrightarrow 0&\geq\frac{n\sigma^{2}_0\hat{\mu}_n -\mu_0n\sigma^{^2}_{0}}{n\sigma^{2}_{0}+\sigma^{2}}\\
+    \Leftrightarrow 0&\geq n\sigma^{2}_0\hat{\mu}_n -\mu_0n\sigma^{2}_{0},\ because\ n,\ \sigma^{2}_{0}\ and\  \sigma^{2}>0\\
+    \Leftrightarrow \mu_0&\geq \hat{\mu}_n
+\end{align*}
+\hspace*{5mm}$\Rightarrow$ If $\mu_0\geq \hat{\mu}_n$ then $min(\hat{\mu}_n, \mu_0)\leq \mu_n \leq max(\hat{\mu}_n, \mu_0)$ is true.\\ \\
+\hspace*{2mm} Same can be proven for $\hat{\mu}_n \geq \mu_n$:
+\begin{align*}
+\hat{\mu}_n &\geq\frac{n\sigma^{2}_0\hat{\mu}_n + \mu_0\sigma^{^2}}{n\sigma^{^2}_{0}+\sigma^{2}}\\
+\Leftrightarrow0&\geq\frac{n\sigma^{2}_0\hat{\mu}_n + \mu_0\sigma^{^2}-\hat{\mu}_n(n\sigma^{^2}_{0}+\sigma^{2})}{n\sigma^{^2}_{0}+\sigma^{2}}\\
+\Leftrightarrow0&\geq\frac{\mu_0\sigma^{2}-\hat{\mu}_n\sigma^{2}}{n\sigma^{^2}_{0}+\sigma^{2}}\\
+\Leftrightarrow 0&\geq \sigma^{2}(\mu_0-\hat{\mu}_n),\ because\ neither\ n,\ \sigma^{^2}_{0}\ or\ \sigma^{2}\ can\ be\ negative\\
+\Leftrightarrow 0&\geq \mu_0-\hat{\mu}_n,\ because\ \sigma^{2}>0\\
+\Leftrightarrow \hat{\mu}_n&\geq \mu_0
+\end{align*}
+\hspace*{5mm}Test whether $\mu_n\geq \mu_0$ if $\hat{\mu}_n \geq \mu_n$:
+\begin{align*}
+    \mu_0&\leq \mu_n \\
+    \Leftrightarrow \mu_0&\leq\frac{n\sigma^{2}_0\hat{\mu}_n + \mu_0\sigma^{^2}}{n\sigma^{^2}_{0}+\sigma^{2}}\\
+    \Leftrightarrow 0&\leq\frac{n\sigma^{2}_0\hat{\mu}_n + \mu_0\sigma^{^2}-\mu_0(n\sigma^{^2}_{0}+\sigma^{2})}{n\sigma^{^2}_{0}+\sigma^{2}}\\
+    \Leftrightarrow 0&\leq\frac{n\sigma^{2}_0\hat{\mu}_n -\mu_0n\sigma^{^2}_{0}}{n\sigma^{2}_{0}+\sigma^{2}}\\
+    \Leftrightarrow 0&\leq n\sigma^{2}_0\hat{\mu}_n -\mu_0n\sigma^{2}_{0},\ because\ n,\ \sigma^{2}_{0}\ and\  \sigma^{2}>0\\
+    \Leftrightarrow \mu_0&\leq \hat{\mu}_n
+\end{align*}
+\hspace*{5mm}$\Rightarrow$ If $\hat{\mu}_n\geq \mu_n$ then $min(\hat{\mu}_n, \mu_0)\leq \mu_n \leq max(\hat{\mu}_n, \mu_0)$ is true.\\ \\
+It is proven that $min(\hat{\mu}_n, \mu_0)\leq \mu_n \leq max(\hat{\mu}_n, \mu_0)$

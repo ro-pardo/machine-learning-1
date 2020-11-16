@@ -1,0 +1,80 @@
+% teilt dem Editor mit, dass er latin1 als encoding verwenden soll
+% !TeX encoding = latin1
+
+% festlegen und modifizieren der Dokumentenklasse
+\documentclass[
+	pdftex,						% PDFtex verwenden
+	a4paper, 						% A4 Format benutzen
+	12pt, 							% Schriftgr??e 12 f?r normalen Text
+	headsepline						% Linie nach Kopfzeile
+]{scrartcl}							% KOMA-Script Dokumentklasse "scrartcl" verwenden
+
+% einbinden der Pakete
+
+\usepackage{hyperref}
+\usepackage{wrapfig}					% Text neben Bild
+\usepackage{amsmath} 					% Paket f?r Formelumgebungen
+\usepackage{amssymb} 					% Paket f?rMathe-Symbole
+
+\usepackage{physics}                    %für Bra und Ket Notation
+
+\usepackage{array}       					% Paket zum Erweitern der Tabelleneigenschaften
+\usepackage{graphicx}  					% Paket um Grafiken einbetten zu k?nnen
+\usepackage{color}       					% Paket f?r Farben im PDF (Seitenfarbe und Textfarbe)
+\usepackage{makeidx}   					% Paket f?r die Indexerstellung.
+\usepackage[T1]{fontenc} 
+\usepackage[utf8]{inputenc}				% Paket f?r Schriftart, Verwenden von T1 Fonts in Ausgabe zur Darstellung von Umlauten
+\usepackage{url}     					% Paket zur richtigen Darstellung von URLs
+\usepackage[a4paper,left=2.5cm,right=2.0cm]{geometry} % Paket zum Einstellen der Seitenr?nder
+\usepackage[ngerman]{babel} 				% Paket f?r Zeichensetzung und Worttrennung, deutsche Zeichensetzung verwenden
+  					% Paket f?r Vektorpfeile: \vv{x}
+
+%\usepackage{scrpage2} 
+\usepackage{subfigure} 					%Bilder nebeneinander
+\usepackage{caption} 					% Paket um Beschriftung f?r Gleitobjekte anzupassen
+	\setlength{\captionmargin}{10pt} 		% extra Abstand rechts und links f?r Beschriftung
+	\renewcommand{\captionfont}{\footnotesize}	% Beschriftung ist in Fu?notengr??e
+			% Paket f?r erweiterte Positionierung von Gleitobjekten, Gleitobjekte d?rfen Abschnitt nicht verlassen
+\usepackage{float}						% Paket zur erweiterung der Gleitobjektfunktionalit?ten, erm?glicht feste Positionierung mit \begin{table}[H]
+\usepackage{epstopdf}			%Paket zur konvertierung von tif dateien zu png
+\epstopdfDeclareGraphicsRule{.tif}{png}{.png}{convert #1 \OutputFile}
+\AppendGraphicsExtensions{.tif}
+% Setzen globaler Parameter
+\graphicspath{{bilder/}} 					% legt globalen Pfad f?r Bilddateien fest
+\setlength{\parindent}{0mm} 				% unterdr?ckt den Absatzeinzug
+
+
+% passt Kopfzeile an
+\pagestyle{myheadings}
+
+
+%\usepackage{scrpage2} 
+%\clearscrheadfoot
+%\pagestyle{scrheadings}
+%\automark[section]{section}
+%\ihead{\rightmark}
+%\ohead{\leftmark}
+%\cfoot{\pagemark}
+
+
+\begin{document}
+
+% f?gt die Titelseite ein
+\input{Titelseite}
+
+% Inhaltsverzeichnis
+\pagenumbering{Roman} 	% r?mische Zahlen (I,II,III,IV,...) f?r Inhaltsverzeichnis
+\newpage
+
+%\tableofcontents		% Inhaltsverzeichnis
+%\listoffigures 		 	% Abbildungsverzeichnis
+
+% der Rest ist arabisch (1,2,3,4,...) numeriert:
+\pagebreak
+\pagenumbering{arabic}	% aribische Numerierung
+\setcounter{page}{1}	% setzt den Seitenz?hler auf "1"
+
+% zusammenf?gen der Abschnitte
+\input{Exercise1}
+\input{Exercise2}
+\end{document}

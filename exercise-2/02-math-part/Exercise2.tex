@@ -1,0 +1,125 @@
+\section{Exercise 2}
+\begin{center}
+    \begin{equation}
+        D=(x_{1}, x_{2},..., x_{7})=(\textrm{head, head, tail, tail, head, head, head})
+        \label{eq:sequence}
+    \end{equation}
+\end{center}
+
+\begin{center}
+        \[P(x|\theta)=\begin{cases}
+        \theta & \text{if } x = \text{head}\\
+        1-\theta& \text{if } x = \text{tail} \\
+\end{cases}\]
+\end{center}
+where $\theta\in[0,1]$.
+
+\subsection{a}
+Following the lecture, the likelihood function $P(D|\theta)$ is given by:\\
+
+\begin{align*}
+    P(D|\theta)&=\prod_{k=1}^{N} P(x_{k}|\theta)\\
+    &=\prod_{k=1}^{N_{\text{tail}}} P(\text{tail}|\theta)\cdot\prod_{k=1}^{N_{\text{Head}}} P(\text{head}|\theta)\\
+    &=\prod_{k=1}^{2} (1-\theta)\cdot\prod_{k=1}^{5} \theta\\
+    \\
+    &=(1-\theta)^{2}\cdot\theta^{5}\\
+\end{align*}
+
+\subsection{b}
+At first we determine the maximum likelihood solution $\hat{\theta}$. To find $\hat{\theta}$ we derive $P(D|\theta)$ (from exercise 2a) by $\theta$ and by setting $\frac{\partial}{\partial\theta}P(D|\theta)=0$ and solving this equation for $\theta$ we will find $\theta$.\\
+
+\begin{align*}
+    \frac{\partial}{\partial\theta} P(D|\theta) &= \frac{\partial}{\partial\theta}(1-\theta)^{2}\cdot\theta^{5}\\
+    &= -2\cdot(1-\theta)\cdot\theta^{5}+5\cdot(1-\theta)^{2}\cdot\theta^{4}\\
+    &= -12\cdot\theta^{5}+7\cdot\theta^{6}+5\cdot\theta^{4}\\
+    &= \theta^{4}\cdot(7\cdot\theta^{2}-12\cdot\theta+5)
+\end{align*}
+
+\begin{align*}
+    &\Rightarrow&&\frac{\partial}{\partial\theta} P(D|\theta)=0\\
+    &\Leftrightarrow&&\theta^{4}\cdot(7\cdot\theta^{2}-12\cdot\theta+5)=0\\
+\end{align*}
+So we find the first theta: $\hat{\theta_{1}}=0$.\\
+
+\begin{align*}
+    &\Rightarrow&&7\cdot\theta^{2}-12\cdot\theta+5=0\\
+    &\Leftrightarrow&&\theta^{2}-\frac{12}{7}\cdot\theta+\frac{5}{7}=0 \text{  }|\text{  p-q-formula}\\
+    &\Leftrightarrow&&\hat{\theta}_{2,3}=\frac{12}{14}\pm\sqrt{\left(\frac{12}{14}\right)^{2}-\frac{5}{7}}\\
+    &\Leftrightarrow&&\hat{\theta}_{2}=1, \text{  }\hat{\theta}_{3}=\frac{5}{7}\\
+\end{align*}
+
+So we have three posible solutions for $\hat{\theta}$:\\
+\begin{center}
+\begin{equation}
+    \hat{\theta_{1}}=0\text{,  } \hat{\theta}_{2}=1\text{,  } \hat{\theta}_{3}=\frac{5}{7}.
+\end{equation}
+\end{center}
+        
+To decide which $\hat{\theta}$ is the maximum in the intervall $[0,1]$ we take a look at the functionvalues of $\frac{\partial^{2}}{\partial\theta^{2}}P(D|\hat{\theta}_{i})$.
+
+\begin{align*}
+    \frac{\partial^{2}}{\partial\theta^{2}}P(D|\hat{\theta}) &=\frac{\partial}{\partial\theta}\theta^{4}\cdot(7\cdot\theta^{2}-12\cdot\theta+5)\\
+    &=4\cdot\theta^{3}\cdot(7\cdot\theta^{2}-12\cdot\theta+5)+\theta^{4}\cdot(14\cdot\theta-12)\\
+    &=42\cdot\theta^{5}-60\cdot\theta^{4}+20\cdot\theta^{5}
+\end{align*}
+
+\begin{align*}
+    &\Rightarrow\frac{\partial^{2}}{\partial\theta^{2}}P(D|\theta_{1}=0)=42\cdot\theta^{5}_{1}-60\cdot\theta^{4}_{1}+20\cdot\theta^{5}_{1}=0\rightarrow\text{saddle point}\\
+    &\Rightarrow\frac{\partial^{2}}{\partial\theta^{2}}P(D|\theta_{2}=1)=42\cdot\theta^{5}_{2}-60\cdot\theta^{4}_{2}+20\cdot\theta^{5}_{2}=2\rightarrow\text{minima}\\
+    &\Rightarrow\frac{\partial^{2}}{\partial\theta^{2}}P(D|\theta_{3}=\frac{5}{7})=42\cdot\theta^{5}_{3}-60\cdot\theta^{4}_{3}+20\cdot\theta^{5}_{3}\approx0,179\rightarrow\text{maxima}\\
+\end{align*}
+
+So the maximum likelihood solution for $\hat{\theta}$ is:
+\begin{center}
+    \begin{equation}
+        \hat{\theta}=\frac{5}{7}
+    \end{equation}
+\end{center}
+
+Now we can calculate the probability that the next two tosses are "head" under assuming that all tosses are generated independently:
+
+\begin{align*}
+    P(x_{8}=\text{head}, x_{8}=\text{head}|\theta)&=P(x_{8}=\text{head})\cdot P(x_{9}=\text{head})\\
+    &=\hat{\theta}\cdot\hat{\theta}=\frac{25}{49}\approx0,51=51\protect
+\end{align*}
+
+\subsection{c}
+Now the prior distribution for the parameter $\theta$ is definded as:\\
+\begin{center}
+        \[p(\theta)=\begin{cases}
+        1 & \text{if } 0\le\theta\le1\\
+        0& \text{else} \\
+\end{cases}\]
+\end{center}
+    
+\begin{align*}
+    \Rightarrow p(\theta|D)&=\frac{p(D|\theta)p(\theta)}{\int p(D|\theta)p(\theta)d\theta}\text{      |}p(\theta)=1\\
+    \\
+    &=\frac{p(D|\theta)}{\int p(D|\theta)d\theta}\\
+    \\
+    &=\frac{(1-\theta)^{2}\cdot\theta^{5}}{\int_{0}^{1}(1-\theta)^{2}\cdot\theta^{5}d\theta}\\
+    \\
+    &=\frac{(1-\theta)^{2}\cdot\theta^{5}}{[\frac{\theta^{6}}{6}-\frac{2\cdot\theta^{7}}{7}+\frac{\theta^{8}}{8}]_{0}^{1}}\\
+    \\
+    &=168\cdot(1-\theta)^2\cdot\theta^{5}
+\end{align*}
+
+So we got the following form for $p(\theta|D)$:
+
+\begin{center}
+        \[p(\theta|D)=\begin{cases}
+        168\cdot(1-\theta)^2\cdot\theta^{5}& \text{for } 0\le\theta\le1\\
+        0& \text{else} \\
+\end{cases}\]
+\end{center}
+
+With this result for $p(\theta|D)$ we can now calculate the probability that the next two tosses are head:
+
+\begin{align*}
+    &\Rightarrow\int P(x_{8}=\text{head},x_{9}=\text{head}|\theta)\cdot p(\theta|D) d\theta\\
+    &=\int \underbrace{P(x_{8}=\text{head}|\theta)}_{=\theta}\cdot \underbrace{P(x_{9}=\text{head}|\theta)}_{=\theta}\cdot \underbrace{p(\theta|D)}_{=168\cdot(1-\theta)^{2}\cdot\theta^{5}} d\theta\\
+    &=168\cdot\int_{0}^{1}\theta^{7}(1-\theta)^{2}d\theta\\
+    &=168\cdot\int_{0}^{1}(\theta^{9}-2\cdot\theta^{8}+\theta^{7})d\theta\\
+    &=168\cdot\left[\frac{\theta^{10}}{10}-\frac{2\cdot\theta^{9}}{9}+\frac{\theta^{8}}{8}\right]_{0}^{1}\\
+    &=\frac{7}{15}\approx0,467=46,7\protect
+\end{align*}
