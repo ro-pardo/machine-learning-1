@@ -1,0 +1,125 @@
+\section{Exercise 1: Estimating the Bayes Error}
+\subsection{a}
+The Bayes Formular is given by:
+\begin{center}
+    \begin{equation}
+        P(w_{j})=\frac{P(x\mid w_{j})}{p(x)}.
+    \label{eq:Bayesformula}
+    \end{equation}
+\end{center}
+
+and the Bayes Error is given by:
+\begin{center}
+    \begin{equation}
+        P(error)=min[P(w_{1}|x),P(w_{2}|x)].
+        \label{eq:error}
+    \end{equation}    
+\end{center}
+
+We now wanna show, that the full error can be upper-bounded as:
+
+\begin{center}
+    \begin{equation}
+        P(error) &\leq\int\frac{2}{\frac{1}{P(w_{1}\mid x)}+\frac{1}{P(w_2|x)}} p(x) dx.
+        \label{eq:1a}
+    \end{equation}
+\end{center}
+
+We can assume that $P(w_{1}|x)\geq P(w_{2}|x)$, so that (\ref{eq:error}) becomes to $ P(error)=P(w_{2}|x)$. Now we can use (\ref{eq:1a}), under consideration that we are integrating on both sides for the same variable what means that we can ignore the integralsigns:
+
+\begin{align*}
+&\Rightarrow& P(error) &\leq\frac{2}{\frac{1}{P(w_{1}\mid x)}+\frac{1}{P(w_2|x)}} p(x)\\
+&\Leftrightarrow& P(w_{2}|x)p(x)&\leq\frac{2}{\frac{1}{P(w_{1}\mid x)}+\frac{1}{P(w_2|x)}} p(x)\\
+&\Leftrightarrow& P(w_{2}|x)&\leq\frac{2}{\frac{1}{P(w_{1}\mid x)}+\frac{1}{P(w_2|x)}}\\
+&\Leftrightarrow& \frac{P(w_{2}|x)}{P(w_{1}|x)}+\frac{P(w_{2}|x)}{P(w_{2}|x)}&\leq2\\
+&\Leftrightarrow& \frac{1}{P(w_{1}|x)}+\frac{1}{P(w_{2}|x)}&\leq\frac{2}{P(w_{2}|x)}\\
+&\Leftrightarrow& \frac{1}{P(w_{1}|x)}&\leq\frac{1}{P(w_{2}|x)}\\
+\\
+&\Leftrightarrow& P(w_{1}|x)&\geq P(w_{2}|x).\\
+\end{align*}
+And that improves (\ref{eq:1a})
+
+
+
+
+
+
+\subsection{b}
+We want to show that for the distributions
+
+\begin{center}
+    \begin{equation}
+        p(x|w_{1})=\frac{\pi^{-1}}{1+(x-\mu)^{2}},\text{ } p(x|w_{2})=\frac{\pi^{-1}}{1+(x+\mu)^{2}}
+    \end{equation}
+\end{center}
+that the Bayes error can be upper-bounded by:
+
+\begin{center}
+\begin{equation}
+    P(error)\leq\frac{2P(w_{1})P(w_{2})}{\sqrt{1+4\mu^{2}P(w_{1})P(w_{2})}}
+\end{equation}
+\end{center}
+
+\begin{align*}
+\Rightarrow P(error) &\leq\int\frac{2}{\frac{1}{P(w_{1}\mid x)}+\frac{1}{P(w_2|x)}} p(x) dx\\
+&=\int\frac{2}{\frac{p(x)}{p(x\mid w_{1})\cdot P(w_{1})}+\frac{p(x)}{p(x|w_{2})\cdot P(w_{2})}} p(x) dx\\
+&=\int\frac{2}{\frac{1}{p(x\mid w_{1})\cdot P(w_{1})}+\frac{1}{p(x|w_{2})\cdot P(w_{2})}} dx\\
+&=\int\frac{2}{\frac{1}{\frac{\pi^{-1}}{1+(x-\mu)^{2}}P(w_{1})}+\frac{1}{\frac{\pi^{-1}}{1+(x+\mu)^{2}}P(w_{2})}}dx\\
+&=\int\frac{2}{\frac{\pi((x-\mu)^{2}+1)}{P(w_{1})}+\frac{\pi((x+\mu)^{2}+1)}{P(w_{2})}}dx\\
+&=\int\frac{2}{\frac{\pi(P(w_{2})((x-\mu)^{2}+1)+P(w_{1})((x+\mu)^{2}+1))}{P(w_{1})P(w_{2})}}\\
+&=\int\frac{2\cdot P(w_{1})P(w_{2})}{\pi(P(w_{2})((x-\mu)^{2}+1)+P(w_{1})((x+\mu)^{2}+1))}\\
+\\
+&=\frac{2\cdot P(w_{1})P(w_{2})}{\pi}\int\frac{1}{P(w_{2})(x-\mu)^{2}+P(w_{2})+P(w_{1})(x+\mu)^{2}+P(w_{1})}dx\\
+\\
+&\text{Use } (x-\mu)^{2}=x^{2}-2x\mu+\mu^{2} \text{ and } (x+\mu)^{2}=x^{2}+2x\mu+\mu^{2}\\
+\end{align*}
+\\
+\begin{align*}
+=&\frac{2\cdot P(w_{1})P(w_{2})}{\pi}\\
+&\cdot\int\frac{dx}{x^{2}P(w_{2})-2x\mu P(w_{2})+\mu^{2}P(w_{2})+P(w_{2})+x^{2}P(w_{1})+2x\mu P(w_{1})+\mu^{2}P(w_{1})+P(w_{1})}\\
+\\
+&=\frac{2\cdot P(w_{1})P(w_{2})}{\pi}\\
+&\cdot\int\frac{dx}{x^{2}(P(w_{2})+P(w_{1}))+x2\mu(P(w_{1})-P(w_{2}))+\mu^{2}(P(w_{2})+P(w_{1}))+P(w_{2})+P(w_{1})}
+\end{align*}
+
+\begin{align*}
+&\text{We say: }\\
+&a=P(w_{1})+P(w_{2}), \\
+&b=2\mu(P(w_{1}-P(w_{2}))\\ 
+&c=\mu^{2}(P(w_{1})+P(w_{2}))+P(w_{1})+P(w_{2})\\
+&\text{and we use: } \int\frac{1}{ax^2+bx+c}dx=\frac{2\pi}{\sqrt{4ac-b^{2}}}.\\
+%&\text{Now we take a look at 4ac:}\\
+\end{align*}
+\begin{align*}
+\text{Now we take a look at 4ac:}\\
+4ac=&4[P(w_{1})+P(w_{2})]\cdot[\mu^{2}(P(w_{1})+P(w_{2}))+P(w_{1})+P(w_{2})]\\
+=&4(\mu^{^2}+1)[P(w_{1})+P(w_{2})]^{2}.\\
+\text{With that and the result of $b^{2}$}\\
+b^{2}=&4\mu(P(w_{1})-P(w_{2}))^{2}= 4\mu^{2}[P^{2}(w_{1})-2P(w_{1})P(w_{2})+P^{2}(w_{2})]\\
+\text{becomes the integral above to:}
+\end{align*}
+
+\begin{align*}
+\Rightarrow&\frac{2P(w_{1})P(w_{2})}{\pi}\\
+&\cdot\frac{2\pi}{\sqrt{4(\mu^{^2}+1)[P(w_{1})+P(w_{2})]^{2}-4\mu^{2}[P^{2}(w_{1})-2P(w_{1})P(w_{2})+P^{2}(w_{2})]}}\\
+\\
+=&\frac{2P(w_{1})P(w_{2})}{\sqrt{4\mu^{2}P(w_{1})P(w_{2})+2P(w_{1})P(w_{2})+P(w_{1})+P(w_{2})}}\vert(\text{use: $(a+b)^{2}=a^{2}+2ab+b^{2}$)}\\
+\\
+=&\frac{2P(w_{1})P(w_{2})}{\sqrt{4\mu^{2}P(w_{1})P(w_{2})+(P(w_{1})+P(w_{2}))^{2}}}\vert(\text{We know that: $P(w_{1})+P(w_{2})=1$})\\
+\\
+=&\frac{2P(w_{1})P(w_{2})}{\sqrt{1+4\mu^{2}P(w_{1})P(w_{2})}}
+\end{align*}
+This proves that the full error can be upper-bounded as:
+
+\begin{center}
+\begin{equation}
+    P(error)\leq\frac{2P(w_{1})P(w_{2})}{\sqrt{1+4\mu^{2}P(w_{1})P(w_{2})}}
+\end{equation}
+\end{center}
+
+
+
+
+\subsection{c}
+For the two cases whether the data is low-dimensional or the data is high-dimensional we can find the upper-bounds by using the methods Chernoff Bound or Bhattacharyya Bound. Both of these methods are numerical. The functions of these integrals are usually not continuous, so that the bounds determined in this way are often tighter than the bounds determined analytically. In high-dimensional cases, Bhattacharyya's method should be better because it is less computationally expensive than the Chernoff Bound method.  
+\newpage

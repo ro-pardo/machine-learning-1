@@ -1,0 +1,69 @@
+\section{Exercise 2: Bayes Decision Boundaries}
+\subsection{a}
+Univariate Laplacian Distrubution:
+$$p(x\mid w_1) = \frac{1}{2\sigma}\exp\left(-\frac{\mid x - \mu \mid}{\sigma}\right) \textrm{ and } p(x\mid w_2) = \frac{1}{2\sigma}\exp\left(-\frac{\mid x + \mu \mid}{\sigma}\right)$$
+The optimal decision is to always predict the first class if \forall x \in \mathbb{R}:   $P(w_1\mid x) > P(w_2 \mid x)$.
+\begin{align*}
+&& P(w_1 \mid x) &> P(w_2 \mid x) \\
+&\Leftrightarrow &\frac{p(x \mid w_1)P(w_1)}{p(x)} &> \frac{p(x \mid w_2)P(w_2)}{p(x)} \\
+&\Leftrightarrow &p(x\mid w_1)P(w_1) &> p(x \mid w_2)P(w_2) \\
+&\Leftrightarrow &\frac{1}{2\sigma}\exp\left(-\frac{\mid x - \mu \mid}{\sigma}\right)P(w_1) &> \frac{1}{2\sigma}\exp\left(-\frac{\mid x + \mu \mid}{\sigma}\right)P(w_2) \\
+&\Leftrightarrow &\exp\left(-\frac{\mid x - \mu \mid}{\sigma}\right)P(w_1) &> \exp\left(-\frac{\mid x + \mu \mid}{\sigma}\right)P(w_2) \\
+&\Leftrightarrow &\ln(\exp\left(-\frac{\mid x - \mu \mid}{\sigma}\right)P(w_1)) &> \ln(\exp\left(-\frac{\mid x + \mu \mid}{\sigma}\right)P(w_2)) \\
+&\Leftrightarrow &-\frac{\mid x - \mu \mid}{\sigma} + \ln(P(w_1)) &> -\frac{\mid x + \mu \mid}{\sigma} + \ln(P(w_2)) \\
+&\Leftrightarrow & \ln(P(w_1)) - \ln(P(w_2)) &> \frac{\mid x - \mu \mid}{\sigma} - \frac{\mid x + \mu \mid}{\sigma} \\
+&\Leftrightarrow & \ln\left(\frac{P(w_1)}{P(w_2)}\right) &> \frac{\mid x - \mu \mid - \mid x + \mu \mid}{\sigma} \\
+&\Leftrightarrow & \sigma\ln\left(\frac{P(w_1)}{P(w_2)}\right) &> \mid x - \mu \mid - \mid x + \mu \mid
+\end{align*}
+Three cases for the absolute values:
+\begin{enumerate}
+	\item $x \le \mu$ and $-x \le \mu$ \\
+		\begin{align*}
+			\sigma\ln\left(\frac{P(w_1)}{P(w_2)}\right) &> -(x - \mu) - (x + \mu ) \\
+			&> -2x \\
+			- \frac{\sigma}{2}\ln\left(\frac{P(w_1)}{P(w_2)}\right) &< x
+		\end{align*}	
+		
+	\item $x \le \mu$ and $-x > \mu$ \\
+		\begin{align*}
+			\sigma\ln\left(\frac{P(w_1)}{P(w_2)}\right) &> -(x - \mu) + x + \mu \\
+			&> 2\mu
+		\end{align*}
+	\item $x > \mu$ \\
+		\begin{align*}
+			\sigma\ln\left(\frac{P(w_1)}{P(w_2)}\right) &> (x - \mu) - (x + \mu ) \\
+			&> -2\mu
+		\end{align*}
+\end{enumerate}
+Possible value-tuples where always the first class will be choosen:
+\begin{align*}
+\{ (P(w_1), P(w_2), \mu, \sigma) \mid &(P(w_1) > P(w_2)) \\
+&\land (P(w_1) = 1-P(w_2)) \\
+&\land \sigma>0 \land \mu>0 \\ 
+&\land ((\sigma\ln\left(\frac{P(w_1)}{P(w_2)}\right)>-2x \land x \le \mu \land -x \le \mu) \\
+&\lor (\sigma\ln\left(\frac{P(w_1)}{P(w_2)}\right)> 2\mu \land x \le \mu \land -x > \mu) \\
+&\lor(\sigma\ln\left(\frac{P(w_1)}{P(w_2)}\right)> -2\mu) \land x > \mu)\}
+\end{align*}
+
+\subsection{b}
+Univariate Gaussian Distrubution:
+$$p(x\mid w_1) = \frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right) \textrm{ and } p(x\mid w_2) = \frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{(x + \mu)^2}{2\sigma^2}\right)$$
+The optimal decision is to always predict the first class if \forall x \in \mathbb{R}:   $P(w_1\mid x) > P(w_2 \mid x)$.
+\begin{align*}
+&& P(w_1 \mid x) &> P(w_2 \mid x) \\
+&\Leftrightarrow &\frac{p(x \mid w_1)P(w_1)}{p(x)} &> \frac{p(x \mid w_2)P(w_2)}{p(x)} \\
+&\Leftrightarrow &\frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)P(w_1) &> \frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{(x + \mu)^2}{2\sigma^2}\right)P(w_2) \\
+&\Leftrightarrow &\exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)P(w_1) &> \exp\left(-\frac{(x + \mu)^2}{2\sigma^2}\right)P(w_2) \\
+&\Leftrightarrow &-\frac{(x - \mu)^2}{2\sigma^2} + \ln\left(P(w_1)\right) &> -\frac{(x + \mu)^2}{2\sigma^2} + \ln\left(P(w_2)\right) \\
+&\Leftrightarrow &\ln\left(\frac{P(w_1)}{P(w_2}\right) &> \frac{(x - \mu)^2 - (x + \mu)^2}{2\sigma^2}\\
+&\Leftrightarrow &2\sigma^2\ln\left(\frac{P(w_1)}{P(w_2)}\right) &> x^2 - 2x\mu + \mu^2 - x^2 - 2x\mu - \mu^2 \\
+&\Leftrightarrow &2\sigma^2\ln\left(\frac{P(w_1)}{P(w_2)}\right) &> -4x\mu \\
+&\Leftrightarrow &\frac{2\sigma^2}{-4\mu}\ln\left(\frac{P(w_1)}{P(w_2)}\right) &< x
+\end{align*}
+Possible value-tuples where always the first class will be choosen:
+\begin{align*}
+\{ (P(w_1), P(w_2), \mu, \sigma) \mid &(P(w_1) > P(w_2)) \\
+&\land (P(w_1) = 1-P(w_2)) \\
+&\land \sigma>0 \land \mu>0 \\ 
+&\land (\frac{2\sigma^2}{-4\mu}\ln\left(\frac{P(w_1)}{P(w_2)}\right) < x) \}
+\end{align*}

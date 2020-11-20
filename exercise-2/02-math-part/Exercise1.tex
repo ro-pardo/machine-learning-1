@@ -1,0 +1,60 @@
+\begin{align*}
+    &p(x,y) = \lambda\eta e^{-\lambda x-\eta y}\\
+    &\lambda,\ \eta>0
+\end{align*}
+
+\subsection*{1a) Show that x and y are independent}
+x and y are independent iff $p(x,y)=g(x)h(y)$ for all x,y for some functions g and h.\\
+$\Rightarrow$ We choose $g(x)=\lambda e^{-\lambda x}$ and $h(y)=\eta e^{-\eta y}$
+\begin{align*}
+    &g(x)*h(y)\\
+    &\Leftrightarrow(\lambda e^{-\lambda x})*(\eta e^{-\eta y})\\
+    &\Leftrightarrow\lambda\eta e^{-\lambda x}* e^{-\eta y}\\
+    &\Leftrightarrow\lambda\eta e^{-\lambda x-\eta y}\\
+    &\Leftrightarrow p(x,y)\\
+    &\Rightarrow {x\ and\ y\ are\ independent}
+\end{align*}
+
+\subsection*{1b) Derive a maximum likelihood estimator of the parameter $\lambda$ based on D.}
+$\theta_1=\lambda\ and\ \theta_2=\eta$ \\
+\begin{align*}
+ln(p(D\mid\theta))&=ln(\prod_{k=1}^N p(x_k, y_k\mid \theta))\\
+\Leftrightarrow\ ln(p(D\mid\theta))&=ln(\prod_{k=1}^N \theta_1\theta_2 e^{-\theta_1 x_k-\theta_2 y_k})\\
+\Leftrightarrow\ ln(p(D\mid\theta))&=\sum_{k=1}^N ln(\theta_1)+ln(\theta_2)-\theta_1 x_k-\theta_2 y_k\\
+\Leftrightarrow\ ln(p(D\mid\theta))&=N(ln(\theta_1)+ln(\theta_2))-\sum_{k=1}^N \theta_1 x_k+\theta_2 y_k\\
+\Rightarrow\ \triangledown_\theta(ln(p(D\mid\theta)))&=\left[\frac{N}{\theta_1}-\sum_{k=1}^N x_k,\ \frac{N}{\theta_2}-\sum_{k=1}^N y_k\right] \land\ best\ \hat{\theta}\ at\  \triangledown_\theta(ln(p(D\mid\theta)))=0\\
+\Rightarrow \hat{\lambda}&=\frac{\sum_{k=1}^N x_k}{N}=\bar{x}\\
+\hat{\eta}&=\frac{\sum_{k=1}^N y_k}{N}=\bar{y}
+\end{align*}
+
+\subsection*{1c) Derive a maximum likelihood estimator of the parameter $\lambda$ based on D under the constraint $\eta = \frac{1}{\lambda}$.
+}
+$\theta_1=\lambda\ and\ \theta_2=\eta=\frac{1}{\lambda}$
+\begin{align*}
+    ln(p(D\mid\theta))&=ln(\prod_{k=1}^N p(x_k, y_k\mid \theta))\\
+    \Leftrightarrow ln(p(D\mid\theta))&=ln(\prod_{k=1}^N \theta_1\theta_2 e^{-\theta_1 x_k-\theta_2 y_k})\\
+    \Leftrightarrow ln(p(D\mid\theta))&=ln(\prod_{k=1}^N \theta_1\frac{1}{\theta_1} e^{-\theta_1 x_k-\frac{1}{\theta_1} y_k}), because\  \theta_2=\eta=\frac{1}{\lambda}=\frac{1}{\theta_1}\\
+    \Leftrightarrow ln(p(D\mid\theta))&=-\sum_{k=1}^N \theta_1 x_k+\frac{1}{\theta_1} y_k\\
+    \Leftrightarrow ln(p(D\mid\theta))&=-\theta_1\sum_{k=1}^N x_k - \frac{1}{\theta_1}\sum_{k=1}^N y_k\\
+    \Rightarrow\ \triangledown_\theta(ln(p(D\mid\theta)))&=\left[\frac{1}{\theta_1^2}\sum_{k=1}^N y_k-\sum_{k=1}^N x_k\right] \land\ best\ \hat{\theta}\ at\  \triangledown_\theta(ln(p(D\mid\theta)))=0\\
+    \Rightarrow \hat{\theta_1}&=\hat{\lambda}=\sqrt{\frac{\sum_{k=1}^N y_k}{\sum_{k=1}^N x_k}}\\
+    \hat{\theta_2}&=\hat{\eta}=\sqrt{\frac{\sum_{k=1}^N x_k}{\sum_{k=1}^N y_k}}
+\end{align*}
+
+\subsection*{1d) Derive a maximum likelihood estimator of the parameter $\lambda$ based on D under the constraint $\eta = 1-\lambda$.}
+$\theta_1=\lambda\ and\ \theta_2=\eta=1-\lambda$
+\begin{align*}
+    ln(p(D\mid\theta))&=ln(\prod_{k=1}^N p(x_k, y_k\mid \theta))\\
+    \Leftrightarrow ln(p(D\mid\theta))&=ln(\prod_{k=1}^N \theta_1\theta_2 e^{-\theta_1 x_k-\theta_2 y_k})\\
+    \Leftrightarrow ln(p(D\mid\theta))&=ln(\prod_{k=1}^N \theta_1(1-\theta_1) e^{-\theta_1 x_k-(1-\theta_1) y_k}), because\  \theta_2=\eta=1-\lambda=1-\theta_1\\
+    \Leftrightarrow ln(p(D\mid\theta))&=\sum_{k=1}^N ln(\theta_1)+ln(1-\theta_1)-\theta_1 x_k-(1-\theta_1) y_k\\
+    \Leftrightarrow ln(p(D\mid\theta))&=N(ln(\theta_1)+ln(1-\theta_1))-\theta_1\sum_{k=1}^N x_k - (1-\theta_1)\sum_{k=1}^N y_k\\
+    \Rightarrow \triangledown_\theta(ln(p(D\mid\theta)))&=\left[N(\frac{1}{\theta_1}-\frac{1}{1-\theta_1})+\sum_{k=1}^N y_k-\sum_{k=1}^N x_k\right] \land\ best\ \hat{\theta}\ at\  \triangledown_\theta(ln(p(D\mid\theta)))=0\\
+    \Rightarrow 0&=N(\frac{1}{\hat{\theta_1}}-\frac{1}{1-\hat{\theta_1}})+\sum_{k=1}^N y_k-\sum_{k=1}^N x_k\\
+    \Leftrightarrow\frac{\sum_{k=1}^N x_k-\sum_{k=1}^N y_k}{N}&=\frac{1}{\hat{\theta_1}}-\frac{1}{1-\hat{\theta_1}}\\
+    \Leftrightarrow\frac{\sum_{k=1}^N x_k-\sum_{k=1}^N y_k}{N}&=\frac{1-2\hat{\theta_1}}{\hat{\theta_1}(1-\hat{\theta_1})}=\frac{2\hat{\theta_1}-1}{\hat{\theta_1}-\hat{\theta_1}^2}\\
+    \Leftrightarrow 0&=\frac{\sum_{k=1}^N x_k-\sum_{k=1}^N y_k}{N}*\left(\frac{\hat{\theta_1}-\hat{\theta_1}^2}{2\hat{\theta_1}-1}\right)\\
+    \Leftrightarrow 0&=\sum_{k=1}^N x_k-\sum_{k=1}^N y_k \\
+    \vee\ 0&=\hat{\theta_1}-\hat{\theta_1}^2 \\
+    &\Rightarrow\ the\ solution\ set\ is\ empty\ for\ \hat{\theta_1},\ because\ the\ only\ possible\ \\& solutions\ \hat{\theta_1}=\lambda=0\ \vee\  \hat{\theta_1}=\lambda=1\ contradict\ with\ \eta = 1-\lambda\ and\ \lambda,\ \eta>0\\
+\end{align*}
